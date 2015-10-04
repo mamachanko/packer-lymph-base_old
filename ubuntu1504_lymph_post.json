@@ -1,0 +1,26 @@
+{
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "inline": ["echo mamachanko >> ~/.bashrc"]
+    }
+  ],
+  "builders": [
+   {
+    "type": "virtualbox-ovf",
+    "source_path": "output-virtualbox-iso/packer-ubuntu-15.04-amd64.ovf",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "vm_name": "ubuntu1504_lymph_post",
+    "shutdown_command": "echo 'packer' | sudo -S shutdown -P now"
+    } 
+  ],
+  "post-processors": [
+    {
+      "output": "builds/{{.Provider}}-ubuntu1504_lymph_post.box",
+      "keep_input_artifact": true,
+      "type": "vagrant"
+    }
+  ]
+}

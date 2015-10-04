@@ -61,7 +61,7 @@
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "virtualbox_version_file": ".vbox_version",
-      "vm_name": "packer-ubuntu-15.04-amd64",
+      "vm_name": "packer-ubuntu-15.04-amd64_lymph",
       "vboxmanage": [
         [
           "modifyvm",
@@ -81,6 +81,7 @@
   "post-processors": [
     {
       "output": "builds/{{.Provider}}-ubuntu1504_lymph.box",
+      "keep_input_artifact": true,
       "type": "vagrant"
     }
   ]
