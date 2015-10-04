@@ -15,7 +15,11 @@
       "playbook_file": "ansible/main.yml",
       "role_paths": [
         "/etc/ansible/roles/geerlingguy.packer-debian",
-        "/etc/ansible/roles/geerlingguy.nfs"
+        "/etc/ansible/roles/geerlingguy.nfs",
+        "/etc/ansible/roles/geerlingguy.elasticsearch",
+        "/etc/ansible/roles/geerlingguy.java",
+        "/etc/ansible/roles/geerlingguy.nodejs",
+        "/etc/ansible/roles/geerlingguy.nginx"
       ]
     },
     {
@@ -76,7 +80,7 @@
   ],
   "post-processors": [
     {
-      "output": "builds/{{.Provider}}-ubuntu1504.box",
+      "output": "builds/{{.Provider}}-ubuntu1504_lymph.box",
       "type": "vagrant"
     }
   ]
