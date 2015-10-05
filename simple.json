@@ -3,7 +3,8 @@
     "vcs": false,
     "name": "mamachanko/simpletest", 
     "include": [
-        "scripts/*"
+        "scripts/*",
+        "http/*"
     ]
   },
   "provisioners": [
