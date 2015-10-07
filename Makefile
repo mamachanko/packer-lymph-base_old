@@ -1,4 +1,4 @@
-ubuntu1504: roles_present ansible_ok
+box: roles_present ansible_ok
 	packer validate lymph_base.json
 	packer build lymph_base.json
 
