@@ -1,6 +1,6 @@
 ubuntu1504: roles_present ansible_ok
-	packer validate ubuntu1504.json
-	packer build ubuntu1504.json
+	packer validate lymph_base.json
+	packer build lymph_base.json
 
 roles_present:
 	ansible-galaxy install -r requirements.txt --force

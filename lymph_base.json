@@ -1,17 +1,30 @@
 {
   "push": {
     "vcs": false,
-    "name": "mamachanko/simpletest", 
-    "include": [
-        "scripts/*",
-        "http/*"
-    ]
+    "name": "mamachanko/lymph-base"
   },
   "provisioners": [
     {
       "type": "shell",
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
       "script": "scripts/setup.sh"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/ansible.sh"
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "ansible/main.yml",
+      "role_paths": [
+        "{{pwd}}/roles/geerlingguy.packer-debian",
+        "{{pwd}}/roles/geerlingguy.nfs",
+        "{{pwd}}/roles/geerlingguy.elasticsearch",
+        "{{pwd}}/roles/geerlingguy.java",
+        "{{pwd}}/roles/geerlingguy.nodejs",
+        "{{pwd}}/roles/geerlingguy.nginx"
+      ]
     },
     {
       "type": "shell",
@@ -52,7 +65,7 @@
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "virtualbox_version_file": ".vbox_version",
-      "vm_name": "packer-ubuntu-15.04-amd64",
+      "vm_name": "packer-lymph-base",
       "vboxmanage": [
         [
           "modifyvm",
@@ -69,20 +82,20 @@
       ]
     }
   ],
- "post-processors": [
-       [{
-            "type": "vagrant",
-            "keep_input_artifact": true
-        },
-        {
-            "type": "atlas",
-            "only": ["virtualbox-iso"],
-            "artifact": "mamachanko/simpletest",
-            "artifact_type": "vagrant.box",
-            "metadata": {
-                "provider": "virtualbox",
-                "version": "0.0.1"
-            }
-        }]
+  "post-processors": [
+    [{
+        "type": "vagrant",
+        "keep_input_artifact": true
+     },
+     {
+        "type": "atlas",
+        "only": ["virtualbox-iso"],
+        "artifact": "mamachanko/lymph-base",
+        "artifact_type": "vagrant.box",
+        "metadata": {
+            "provider": "virtualbox",
+            "version": "0.0.1"
+        }
+    }]
     ]
 }
