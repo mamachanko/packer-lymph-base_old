@@ -3,7 +3,7 @@
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
     "ssh_port": "22",
-    "ssh_wait_timeout": "1000s",
+    "ssh_wait_timeout": "90m",
     "disk_size": "81920",
     "boot_wait": "10s",
     "vm_name": "packer-lymph-base",
