@@ -9,7 +9,7 @@
     "vm_name": "packer-lymph-base",
     "atlas_username": "mamachanko",
     "atlas_buildname": "lymph-base",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "iso_checksum_type": "md5",
     "iso_checksum": "487f4a81f22f8597503db3d51a1b502e"
   },
