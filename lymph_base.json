@@ -48,6 +48,8 @@
   "builders": [
     {
       "type": "virtualbox-iso",
+      "name": "{{ user `vm_name` }}",
+      "vm_name": "{{ user `vm_name` }}",
       "boot_command": [
         "<esc><wait>",
         "<esc><wait>",
@@ -77,7 +79,6 @@
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "virtualbox_version_file": ".vbox_version",
-      "vm_name": "{{ user `vm_name` }}",
       "vboxmanage": [
         [
           "modifyvm",
@@ -96,18 +97,23 @@
     {
       "type": "qemu",
       "accelerator": "kvm",
+      "name": "{{ user `vm_name` }}",
+      "vm_name": "{{ user `vm_name` }}",
       "boot_command": [
-        "<esc><esc><enter><wait>",
-        "/install/vmlinuz preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
-        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us <wait>",
-        "hostname={{ .Name }} <wait>",
-        "fb=false debconf/frontend=noninteractive <wait>",
-        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false <wait>",
-        "initrd=/install/initrd.gz -- <enter><wait>"
+        "<esc><esc><enter><wait><wait>",
+
+        "/install/vmlinuz url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg",
+        " debian-installer=en_US auto locale=en_US kbd-chooser/method=us",
+        " hostname={{ .Name }}",
+
+        " keyboard-configuration/modelcode=SKIP",
+        " keyboard-configuration/layout=USA",
+        " keyboard-configuration/variant=USA",
+
+        "initrd=/install/initrd.gz -- <enter>"
       ],
       "disk_size": "{{ user `disk_size`}}",
       "headless": true,
-      "vm_name": "{{ user `vm_name` }}",
       "http_directory": "http",
       "iso_urls": [
         "iso/ubuntu-15.04-server-amd64.iso",
