@@ -24,6 +24,7 @@
         - libpq-dev
         - libssl-dev
         - libffi-dev
+        - libjpeg-dev
         # middleware
         - rabbitmq-server
         - redis-server
